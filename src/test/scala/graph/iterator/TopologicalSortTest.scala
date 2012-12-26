@@ -2,7 +2,7 @@ package graph.iterator
 
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
-import graph.{DirectedGraph, Vertex}
+import graph._
 
 class TopologicalSortTest extends FlatSpec with ShouldMatchers {
   "topologicalSort" should "vvv" in {

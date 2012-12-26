@@ -1,25 +1,33 @@
 package graph
 
-trait DirectedEdges {
-  this: Graph =>
+trait DirectedEdges[V] {
+  this: Graph[V] =>
 
-  def addEdge(e: Edge*) = {
-    val vs = e.foldLeft(Seq[Vertex]()){(l: Seq[Vertex], e: Edge) => l ++ List(e._1, e._2 )}
-    new Graph(this.vertices ++ vs, this.edges ++ e) with DirectedEdges
+  def addEdge(e: Edge[V]*) = {
+    val vs = e.foldLeft(Seq[V]()){(l: Seq[V], e: Edge[V]) => l ++ List[V](e._1, e._2 )}
+    new Graph(this.vertices ++ vs, this.edges ++ e) with DirectedEdges[V]
   }
 
   def reverse = {
-    DirectedGraph(vertices, edges.map {e => (e._2, e._1)})
+    DirectedGraph(vertices, edges.map {e: Edge[V] => e.reverse})
+  }
+
+  def size = this.edges.size
+
+  def union(g: Graph[V]): Graph[V] = {
+    require(this.vertices.intersect(g.vertices).isEmpty)
+    require(this.edges.intersect(g.edges).isEmpty)
+    DirectedGraph(this.vertices.union(g.vertices), this.edges.union(g.edges))
   }
 }
 
 object DirectedGraph {
-  def apply(vertices: Set[Vertex], edges:Set[Edge]) : Graph with DirectedEdges = {
-    new Graph(vertices, edges) with DirectedEdges
+  def apply[V](vertices: Set[V], edges:Set[Edge[V]]) : Graph[V] with DirectedEdges[V] = {
+    new Graph[V](vertices, edges) with DirectedEdges[V]
   }
 
-  def apply(): Graph with DirectedEdges = {
-    new Graph(Set(), Set()) with DirectedEdges
+  def apply[V](): Graph[V] with DirectedEdges[V] = {
+    new Graph[V](Set[V](), Set[Edge[V]]()) with DirectedEdges[V]
   }
 }
 

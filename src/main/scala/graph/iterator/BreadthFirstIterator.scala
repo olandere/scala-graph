@@ -1,12 +1,12 @@
-package iterator
+package graph.iterator
 
 import graph._
 import collection.mutable.Queue
 import collection.mutable.Set
 
-class BreadthFirstIterator(val graph: Graph, val start: Vertex) extends Iterator[Vertex] {
-  val queue = Queue[Vertex]()
-  val visited = Set[Vertex]()
+class BreadthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterator[V] {
+  val queue = Queue[V]()
+  val visited = Set[V]()
   queue.enqueue(start)
   val adjList = graph.adjList
 
@@ -21,7 +21,7 @@ class BreadthFirstIterator(val graph: Graph, val start: Vertex) extends Iterator
 }
 
 object BreadthFirstIterator {
-  def apply(graph: Graph, start: Vertex) = {
+  def apply[V](graph: Graph[V], start: V) = {
     new BreadthFirstIterator(graph, start)
   }
 }

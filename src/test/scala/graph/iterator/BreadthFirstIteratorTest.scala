@@ -1,6 +1,5 @@
 package graph.iterator
 
-import _root_.iterator.BreadthFirstIterator
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 import graph._
@@ -16,15 +15,15 @@ class BreadthFirstIteratorTest extends FlatSpec with ShouldMatchers {
     val f = Vertex("f")
     val g = Vertex("g")
     val h = Vertex("h")
-    val e1 = (a, b)
-    val e2 = (a, c)
-    val e3 = (b, d)
-    val e4 = (b, e)
-    val e5 = (c, f)
-    val e6 = (c, g)
-    val e7 = (e, h)
+    val e1 = Edge(a, b)
+    val e2 = Edge(a, c)
+    val e3 = Edge(b, d)
+    val e4 = Edge(b, e)
+    val e5 = Edge(c, f)
+    val e6 = Edge(c, g)
+    val e7 = Edge(e, h)
 
-    val graph = UndirectedGraph().addEdge(e1, e2, e3, e4, e5, e6, e7)
+    val graph = UndirectedGraph[Vertex]().addEdge(e1, e2, e3, e4, e5, e6, e7)
     val iterator = BreadthFirstIterator(graph, a)
     val bldr = new StringBuilder()
     iterator.foreach(v => bldr.append(v))

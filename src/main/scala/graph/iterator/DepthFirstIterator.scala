@@ -1,12 +1,12 @@
 package graph.iterator
 
-import graph.{Vertex, Graph}
+import graph.Graph
 import collection.mutable.{Queue, Set, Stack}
 
-class DepthFirstIterator(val graph: Graph, val start: Vertex) extends Iterator[Vertex] {
-  val queue = Queue[Vertex]()
-  val visited = Set[Vertex]()
-  val stack = Stack[Vertex]()
+class DepthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterator[V] {
+  val queue = Queue[V]()
+  val visited = Set[V]()
+  val stack = Stack[V]()
   queue.enqueue(start)
   val adjList = graph.adjList
 
@@ -30,7 +30,7 @@ class DepthFirstIterator(val graph: Graph, val start: Vertex) extends Iterator[V
 }
 
 object DepthFirstIterator {
-  def apply(graph: Graph, start: Vertex) = {
+  def apply[V](graph: Graph[V], start: V) = {
     new DepthFirstIterator(graph, start)
   }
 }
