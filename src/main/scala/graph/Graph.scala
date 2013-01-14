@@ -5,13 +5,11 @@ abstract class Graph[V](val vertices: Set[V], val edges: Set[Edge[V]]) {
 
   def reverse: Graph[V]
 
-  def adjList = {
-    edges.groupBy{e: Edge[V] => e._1}.map{case (k, v) => k -> v.map(_._2)}
-  }
+  def adjList: Map[V, Set[V]]
 
   def order = vertices.size
 
-  def size: Int
+  def size: Int = edges.size
 
   def degree = 2 * size
 

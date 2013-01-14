@@ -1,5 +1,6 @@
 package graph
 
+import graph._
 import org.scalatest.FlatSpec
 import org.scalatest.matchers.ShouldMatchers
 
@@ -37,7 +38,7 @@ class GraphTest extends FlatSpec with ShouldMatchers {
     val v2 = Vertex("v2")
     val e1= Edge(v1, v2)
     val g = UndirectedGraph[Vertex]()
-    g.addEdge(e1).edges.size should equal(2)
+    g.addEdge(e1).edges.size should equal(1)
   }
 
   "undirectedGraph" should "contain three vertices" in {
@@ -47,7 +48,7 @@ class GraphTest extends FlatSpec with ShouldMatchers {
     val e1= Edge(v1, v2)
     val e2= Edge(v1, v3)
     val g = UndirectedGraph(Set[Vertex](), Set[Edge[Vertex]]()).addEdge(e1).addEdge(e2)
-    g.edges.size should equal(4)
+    g.edges.size should equal(2)
     g.vertices.size should equal(3)
   }
 
@@ -61,8 +62,7 @@ class GraphTest extends FlatSpec with ShouldMatchers {
     val v4 = Vertex("v4")
     val v5 = Vertex("v5")
     val e3= Edge(v4, v5)
-    val e4= Edge(v5, v4)
-    val g1 = UndirectedGraph(Set[Vertex](v4, v5), Set[Edge[Vertex]](e3, e4))
+    val g1 = UndirectedGraph(Set[Vertex](v4, v5), Set[Edge[Vertex]](e3))
     val g2 = g.union(g1)
     g2.order should equal(5)
     g2.size should equal(3)

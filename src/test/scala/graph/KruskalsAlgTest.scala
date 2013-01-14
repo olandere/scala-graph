@@ -18,7 +18,7 @@ class KruskalsAlgTest extends FlatSpec with ShouldMatchers {
     val spanTree = KruskalsAlg[Vertex](graph)
     println(spanTree.edges)
   }
-  ""
+
   "KruskalsAlg" should "find min tree" in {
     val a = Vertex("A")
     val b = Vertex("B")

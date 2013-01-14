@@ -5,14 +5,16 @@ trait DirectedEdges[V] {
 
   def addEdge(e: Edge[V]*) = {
     val vs = e.foldLeft(Seq[V]()){(l: Seq[V], e: Edge[V]) => l ++ List[V](e._1, e._2 )}
-    new Graph(this.vertices ++ vs, this.edges ++ e) with DirectedEdges[V]
+    DirectedGraph(this.vertices ++ vs, this.edges ++ e)
+  }
+
+  def adjList = {
+    edges.groupBy{e: Edge[V] => e._1}.map{case (k, v) => k -> v.map(_._2)}
   }
 
   def reverse = {
-    DirectedGraph(vertices, edges.map {e: Edge[V] => e.reverse})
+    DirectedGraph(this.vertices, edges.map {e: Edge[V] => e.reverse})
   }
-
-  def size = this.edges.size
 
   def union(g: Graph[V]): Graph[V] = {
     require(this.vertices.intersect(g.vertices).isEmpty)
