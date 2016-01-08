@@ -5,7 +5,7 @@ import collection.mutable.{Set, Queue}
 
 object TopologicalSort {
 
-  def apply[V, E <: Edge[V]](graph: DirectedEdges[V]) = {
+  def apply[V, E <: Edge[V]](graph: DirectedEdges[V]): List[V] = {
     val revGraph = graph.reverse
     val startVertices = revGraph.vertices.filterNot{v: V => revGraph.edges.exists(e => e._2 == v)}
     val visited:Set[V] = Set()

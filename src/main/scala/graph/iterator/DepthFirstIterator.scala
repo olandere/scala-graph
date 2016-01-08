@@ -10,9 +10,9 @@ class DepthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterator[
   queue.enqueue(start)
   val adjList = graph.adjList
 
-  def hasNext = !queue.isEmpty
+  def hasNext: Boolean = !queue.isEmpty
 
-  def next() = {
+  def next(): V = {
     val elem = queue.dequeue()
     visited.add(elem)
     val unvisited = adjList(elem).filterNot(visited)
@@ -30,7 +30,7 @@ class DepthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterator[
 }
 
 object DepthFirstIterator {
-  def apply[V](graph: Graph[V], start: V) = {
+  def apply[V](graph: Graph[V], start: V): Iterator[V] = {
     new DepthFirstIterator(graph, start)
   }
 }

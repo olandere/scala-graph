@@ -10,9 +10,9 @@ class BreadthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterato
   queue.enqueue(start)
   val adjList = graph.adjList
 
-  def hasNext = !queue.isEmpty
+  def hasNext: Boolean = !queue.isEmpty
 
-  def next() = {
+  def next(): V = {
     val elem = queue.dequeue()
     visited.add(elem)
     queue.enqueue(adjList(elem).filterNot(visited).toSeq:_*)
@@ -21,7 +21,7 @@ class BreadthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterato
 }
 
 object BreadthFirstIterator {
-  def apply[V](graph: Graph[V], start: V) = {
+  def apply[V](graph: Graph[V], start: V): Iterator[V] = {
     new BreadthFirstIterator(graph, start)
   }
 }

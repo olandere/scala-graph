@@ -1,7 +1,6 @@
 package graph.iterator
 
-import org.scalatest.FlatSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest._
 import graph._
 import scala.StringBuilder
 

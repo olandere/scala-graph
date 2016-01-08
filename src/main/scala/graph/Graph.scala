@@ -7,11 +7,11 @@ abstract class Graph[V](val vertices: Set[V], val edges: Set[Edge[V]]) {
 
   def adjList: Map[V, Set[V]]
 
-  def order = vertices.size
+  def order: Int = vertices.size
 
   def size: Int = edges.size
 
-  def degree = 2 * size
+  def degree: Int = 2 * size
 
   def union(g: Graph[V]): Graph[V]
 

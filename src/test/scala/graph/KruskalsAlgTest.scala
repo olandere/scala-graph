@@ -1,8 +1,7 @@
 package graph
 
 import graph._
-import org.scalatest.FlatSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest._
 
 class KruskalsAlgTest extends FlatSpec with ShouldMatchers {
   "KruskalsAlg" should "find spanning tree" in {
