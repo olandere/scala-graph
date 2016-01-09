@@ -1,6 +1,7 @@
 package graph
 
-import graph.KruskalsAlg.UndirectedGraph
+import graph.algorithms.KruskalsAlg
+import KruskalsAlg.UndirectedGraph
 
 import scala.annotation.tailrec
 

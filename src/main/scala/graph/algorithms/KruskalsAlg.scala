@@ -1,6 +1,8 @@
-package graph
+package graph.algorithms
 
-import annotation.tailrec
+import graph.{Edge, Graph, UndirectedEdges, UndirectedGraph}
+
+import scala.annotation.tailrec
 
 object KruskalsAlg {
 

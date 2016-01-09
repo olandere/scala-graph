@@ -1,4 +1,4 @@
-package graph
+package graph.algorithms
 
 import graph._
 import org.scalatest._
