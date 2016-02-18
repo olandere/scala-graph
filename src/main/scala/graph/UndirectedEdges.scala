@@ -3,8 +3,8 @@ package graph
 trait UndirectedEdges[V] {
   this: Graph[V] =>
 
-  def addEdge(e: Edge[V]*): Graph[V] with UndirectedEdges[V] = {
-    val vs = e.foldLeft(Seq[V]()) { (l: Seq[V], e: Edge[V]) => l ++ List[V](e._1, e._2) }
+  def addEdge(e: Edge[V]*): UndirectedGraph[V] = {
+    val vs = e.foldLeft(Seq[V]()) { (l: Seq[V], e: Edge[V]) => l ++ List(e._1, e._2) }
     UndirectedGraph(this.vertices ++ vs, this.edges ++ e)
   }
 
@@ -24,22 +24,24 @@ trait UndirectedEdges[V] {
     merge(g_in, g_out)
   }
 
-  def reverse: Graph[V] with UndirectedEdges[V] = this
+  def reverse: UndirectedGraph[V] = this
 
-  def union(g: Graph[V]): Graph[V] with UndirectedEdges[V] = {
+  def union(g: Graph[V]): UndirectedGraph[V] = {
     require(this.vertices.intersect(g.vertices).isEmpty)
     require(this.edges.intersect(g.edges).isEmpty)
     UndirectedGraph(this.vertices.union(g.vertices), this.edges.union(g.edges))
   }
+
+  def containsEdge(e: Edge[V]): Boolean = this.edges(e) || this.edges(e.reverse)
 }
 
 object UndirectedGraph {
 
-  def apply[V](vertices: Set[V], edges: Set[Edge[V]]): Graph[V] with UndirectedEdges[V] = {
-    new Graph[V](vertices, edges) with UndirectedEdges[V]
+  def apply[V](vertices: Set[V], edges: Set[Edge[V]]): UndirectedGraph[V] = {
+    new Graph(vertices, edges) with UndirectedEdges[V]
   }
 
-  def apply[V](): Graph[V] with UndirectedEdges[V] = {
+  def apply[V](): UndirectedGraph[V] = {
     new Graph[V](Set(), Set()) with UndirectedEdges[V]
   }
 }

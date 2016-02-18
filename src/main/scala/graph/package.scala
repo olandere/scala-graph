@@ -1,6 +1,10 @@
 package object graph {
   import scala.language.implicitConversions
 
+  type UndirectedGraph[V] = Graph[V] with UndirectedEdges[V]
+
+  type DirectedGraph[V] = Graph[V] with DirectedEdges[V]
+
   case class Vertex(name: String) {
     override def toString: String = name
 //
@@ -20,7 +24,7 @@ package object graph {
 
   //type Edge = (Vertex, Vertex)
 
-  class Edge[V](tail: V, head: V, val weight: Double) {
+  class Edge[V](tail: V, head: V, val weight: Option[Double]) {
     val _1 = tail
     val _2 = head
 
@@ -29,7 +33,7 @@ package object graph {
     def contains(vertex: V): Boolean = {_1 == vertex || _2 == vertex}
 
     //override def toString = "("+tail+", "+head+")"
-    override def toString: String = s"$tail --> $head ($weight)"
+    override def toString: String = s"$tail --> $head ${weight.fold("")("(" + _ + ")")}"
 
     override def equals(that: Any): Boolean = {
       that match {
@@ -37,13 +41,17 @@ package object graph {
         case _ => false
       }
     }
+
+    override def hashCode: Int = {
+      _1.hashCode() * 41 + _2.hashCode()
+    }
   }
 
   object Edge {
-    def apply[V](t: V, h: V): Edge[V] = new Edge[V](t, h, 0)
+    def apply[V](t: V, h: V): Edge[V] = new Edge[V](t, h, None)
 
-    def apply[V](t: V, h: V, w: Double): Edge[V] = new Edge[V](t, h, w)
+    def apply[V](t: V, h: V, w: Double): Edge[V] = new Edge[V](t, h, Some(w))
   }
 
-  implicit def toEdge(t: Tuple2[Vertex, Vertex]): Edge[Vertex] = new Edge[Vertex](t._1, t._2, 0)
+  implicit def toEdge(t: Tuple2[Vertex, Vertex]): Edge[Vertex] = new Edge[Vertex](t._1, t._2, None)
 }

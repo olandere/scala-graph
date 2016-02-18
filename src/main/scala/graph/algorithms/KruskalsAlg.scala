@@ -1,12 +1,10 @@
 package graph.algorithms
 
-import graph.{Edge, Graph, UndirectedEdges, UndirectedGraph}
+import graph.{Edge, UndirectedGraph}
 
 import scala.annotation.tailrec
 
 object KruskalsAlg {
-
-  type UndirectedGraph[V] = Graph[V] with UndirectedEdges[V]
 
   def apply[V](graph: UndirectedGraph[V]): UndirectedGraph[V] = {
     @tailrec
@@ -25,10 +23,9 @@ object KruskalsAlg {
     }
 
     //Create forest of graphs
-    val forest: Set[UndirectedGraph[V]] = (for (v <- graph.vertices) yield {
+    val forest: Set[UndirectedGraph[V]] = for (v <- graph.vertices) yield {
       UndirectedGraph(Set(v), Set[Edge[V]]())
-    })
-                                          .toSet
+    }
     //Sort edges by weight
     val edges = graph.edges.toSeq.sortBy(_.weight)
     buildSpanningTree(forest, edges)
