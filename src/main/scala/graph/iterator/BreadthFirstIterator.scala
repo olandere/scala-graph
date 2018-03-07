@@ -1,16 +1,15 @@
 package graph.iterator
 
 import graph._
-import collection.mutable.Queue
-import collection.mutable.Set
+import collection.mutable
 
 class BreadthFirstIterator[V](val graph: Graph[V], val start: V) extends Iterator[V] {
-  val queue = Queue[V]()
-  val visited = Set[V]()
+  val queue = mutable.Queue[V]()
+  val visited = mutable.Set[V]()
   queue.enqueue(start)
   val adjList = graph.adjList
 
-  def hasNext: Boolean = !queue.isEmpty
+  def hasNext: Boolean = queue.nonEmpty
 
   def next(): V = {
     val elem = queue.dequeue()

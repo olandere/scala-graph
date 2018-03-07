@@ -51,6 +51,8 @@ package object graph {
     def apply[V](t: V, h: V): Edge[V] = new Edge[V](t, h, None)
 
     def apply[V](t: V, h: V, w: Double): Edge[V] = new Edge[V](t, h, Some(w))
+
+    def unapply[V](edge: Edge[V]): Option[(V, V, Option[Double])] = Some((edge._1, edge._2, edge.weight))
   }
 
   implicit def toEdge(t: Tuple2[Vertex, Vertex]): Edge[Vertex] = new Edge[Vertex](t._1, t._2, None)

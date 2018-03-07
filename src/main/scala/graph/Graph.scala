@@ -19,6 +19,8 @@ abstract class Graph[V](val vertices: Set[V], val edges: Set[Edge[V]]) {
 
   def union(g: Graph[V]): Graph[V]
 
+  def neighbors(v: V): Set[V] = edges.filter{_.contains(v)}.flatMap{e => Set(e._1, e._2)} - v
+
   /** Tests whether the graph contains the specified vertex */
   def contains(v: V): Boolean = vertices(v)
 
