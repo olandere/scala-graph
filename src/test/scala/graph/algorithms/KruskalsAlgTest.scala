@@ -3,7 +3,7 @@ package graph.algorithms
 import graph._
 import org.scalatest._
 
-class KruskalsAlgTest extends FlatSpec with ShouldMatchers {
+class KruskalsAlgTest extends FlatSpec with Matchers {
   "KruskalsAlg" should "find spanning tree" in {
     val v1 = Vertex("v1")
     val v2 = Vertex("v2")

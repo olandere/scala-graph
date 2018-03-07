@@ -2,7 +2,7 @@ package graph
 
 import org.scalatest._
 
-class GraphTest extends FlatSpec with ShouldMatchers {
+class GraphTest extends FlatSpec with Matchers {
 
   "directGraph" should "be empty" in {
     DirectedGraph().edges.size should equal(0)
@@ -66,6 +66,7 @@ class GraphTest extends FlatSpec with ShouldMatchers {
     g.degree(v1) should equal(2)
     g.degree(v2) should equal(1)
     g.degree(v3) should equal(1)
+    g.neighbors(v1) should equal(Set(v2, v3))
   }
 
   "unionOfUndirectedGraphs" should "be the union of vertices and edges" in {

@@ -4,7 +4,7 @@ import org.scalatest._
 import graph._
 import scala.StringBuilder
 
-class BreadthFirstIteratorTest extends FlatSpec with ShouldMatchers {
+class BreadthFirstIteratorTest extends FlatSpec with Matchers {
   "breadthFirstIteration" should "traverse in breadth-first order" in {
     val a = Vertex("a")
     val b = Vertex("b")

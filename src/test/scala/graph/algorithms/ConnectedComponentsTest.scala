@@ -6,7 +6,7 @@ import org.scalatest._
 /**
   * Created by eolander on 1/9/16.
   */
-class ConnectedComponentsTest extends FlatSpec with ShouldMatchers {
+class ConnectedComponentsTest extends FlatSpec with Matchers {
 
   "ConnectedComponents" should "return the same graph" in {
     val v1 = Vertex("v1")

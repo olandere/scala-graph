@@ -3,7 +3,7 @@ package graph.iterator
 import org.scalatest._
 import graph._
 
-class DepthFirstIteratorTest extends FlatSpec with ShouldMatchers {
+class DepthFirstIteratorTest extends FlatSpec with Matchers {
   "depthFirstIteration" should "handle cycles" in {
     val a = Vertex("a")
     val b = Vertex("b")

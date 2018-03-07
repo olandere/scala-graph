@@ -3,9 +3,9 @@ lazy val root = (project in file(".")).
     name := "scala-graph",
     organization := "com.divaszivis",
     version := "1.0",
-    scalaVersion := "2.11.7",
+    scalaVersion := "2.12.4",
     scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature"),
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "2.2.1" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.1" % "test"
 	)
 )

@@ -3,7 +3,7 @@ package graph.iterator
 import org.scalatest._
 import graph._
 
-class TopologicalSortTest extends FlatSpec with ShouldMatchers {
+class TopologicalSortTest extends FlatSpec with Matchers {
   "topologicalSort" should "vvv" in {
     val v7 = Vertex("7")
     val v5 = Vertex("5")
